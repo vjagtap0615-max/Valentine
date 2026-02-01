@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Question ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+.box {
+    background: rgba(255,255,255,0.97);
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    text-align: center;
+    position: relative;
+}
+
+h1 { color: #d63384; margin-bottom: 10px; }
+p { color: #555; margin-bottom: 25px; }
+
+button {
+    padding: 12px 28px;
+    font-size: 17px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yesBtn { background: #ff4d6d; color: white; }
+#noBtn  { background: #6c757d; color: white; position: absolute; left: 60px; top: 120px; }
+
+#celebration {
+    display: none;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 5%;
+}
+
+#celebration h1 {
+    color: white;
+    font-size: 40px;
+}
+#celebration p { color: #ffd6e0; font-size: 20px; }
+
+#gif {
+    width: 320px;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="box">
+    <h1>Can I keep you as my Valentine? ❤️</h1>
+    <p>You make ordinary days feel special… what do you say?</p>
+    <button id="yesBtn">Yes, I'd love to 💖</button>
+    <button id="noBtn">No</button>
+</div>
+
+<div id="celebration">
+    <h1>Congratulations, My Valentine ❤️</h1>
+    <p>You just made my world brighter ✨</p>
+    <img id="gif" src="Zi.gif">
+</div>
+
+<audio id="loveSong" preload="auto">
+    <source src="zara-sa-jannat-128-kbps_NkI48wme.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const song = document.getElementById("loveSong");
+
+song.load();
+
+/* 💘 YES CLICK */
+yesBtn.addEventListener("click", () => {
+    document.getElementById("box").style.display = "none";
+    document.body.style.background = "black";
+    document.getElementById("celebration").style.display = "block";
+
+    song.volume = 0.9;
+    song.play().catch(()=>alert("Tap once to allow music ❤️"));
+});
+
+/* 🚫 NO BUTTON ESCAPE */
+document.addEventListener("mousemove", (e) => {
+    const rect = noBtn.getBoundingClientRect();
+    const buffer = 130;
+
+    if (
+        e.clientX > rect.left - buffer &&
+        e.clientX < rect.right + buffer &&
+        e.clientY > rect.top - buffer &&
+        e.clientY < rect.bottom + buffer
+    ) {
+        noBtn.style.left = Math.random() * (window.innerWidth - rect.width) + "px";
+        noBtn.style.top  = Math.random() * (window.innerHeight - rect.height) + "px";
+    }
+});
+</script>
+
+</body>
+</html>
